@@ -43,16 +43,6 @@
       async function run() {
         //room = await createMtgRoom();
 
-		//var ifrm = document.createElement("IFRAME");
-        //ifrm.setAttribute("src", "https://scoar.netlify.app/");
-		//ifrm.width= '80%';
-		//ifrm.height= '100%';
-		//ifrm.border= '0';
-		//ifrm.style.right='0';
-		
-
-		//document.body.appendChild(ifrm);
-
 		room = { url: 'https://scoar.daily.co/Demo' }
 
         callFrame = window.DailyIframe.createFrame({
@@ -68,7 +58,7 @@
 
         await callFrame.join({ 
           url: room.url,
-          showLeaveButton: true 
+          showLeaveButton: false 
         });
 
         function leave(e) {
