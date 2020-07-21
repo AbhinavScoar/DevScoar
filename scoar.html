@@ -40,6 +40,9 @@
             scrolling="disabled"> 
   </iframe> 
     <script>
+	
+		var wid = '20%';
+		
       async function run() {
         //room = await createMtgRoom();
 
@@ -51,15 +54,35 @@
              border: 0,
              right: 0,
 			 bottom: 0,
-             width: '20%',
+             width: wid,
              height: '100%'
            }
         });
-
+		
+		
         await callFrame.join({ 
           url: room.url,
-          showLeaveButton: false 
+          showLeaveButton: false,
+		  showFullscreenButton: true,
+		  userName: "AbhinavSrivastava"
         });
+		
+		
+		
+		function showEvent(e) {
+			if(e.participant.screen){
+				console.log('Shared');
+			}
+		}
+
+		callFrame.on("participant-updated", showEvent);
+		
+		if (callFrame.participant-updated.participant.screen){
+			callFrame.requestFullScreen();
+		}
+		else{
+			callFrame.exitFullScreen();
+		}
 
         function leave(e) {
           callFrame.destroy();
